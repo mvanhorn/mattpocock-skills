@@ -11,7 +11,9 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version && node scripts/sync-plugin-version.mjs",
-    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check"
+    "check": "npm run check-plugin-version && node scripts/check-catalog.mjs",
+    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "check-catalog": "node scripts/check-catalog.mjs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
