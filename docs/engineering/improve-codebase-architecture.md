@@ -63,7 +63,7 @@ Yes. Say so when you invoke it ("don't grill me, just show the report"). This is
 
 **The report opened as unstyled raw HTML with no diagrams. What happened?**
 
-The report loads Tailwind and Mermaid from CDNs, so it needs network access when you open it. If something blocks those scripts, the page breaks with no error. In the reported case, a security hook required SRI hashes. The agent added them, but the CDN served different bytes to the browser than to the `curl` that computed the hash, so the browser blocked the script. Offline and locked-down environments have the same problem. The agent cannot see it, because it never renders the page. As a workaround, ask for inline CSS and hand-built SVG diagrams instead of the CDN setup. This is an open issue.
+Older runs loaded layout and diagrams from the network. A blocked script, an offline machine, or a hash that did not match the bytes the browser received left a bare page, and the agent never saw it because it does not render the file. The report is now a copy of `scaffold.html`: inline CSS, hand-built diagrams, no scripts. If you still get an unstyled page, the agent invented class names that are not in that stylesheet, or it added a script tag. Tell it to copy `scaffold.html` and keep the `<style>` block unchanged.
 
 **It gave me twelve candidates. Do I work through them in the same session or start a new one?**
 

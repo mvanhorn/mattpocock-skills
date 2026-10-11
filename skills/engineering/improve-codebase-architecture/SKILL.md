@@ -38,7 +38,7 @@ Apply the **deletion test** to anything you suspect is shallow: would deleting i
 
 Write a self-contained HTML file to the OS temp directory so nothing lands in the repo. Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` (or `%TEMP%` on Windows), and write to `<tmpdir>/architecture-review-<timestamp>.html` so each run gets a fresh file. Open it for the user (`xdg-open <path>` on Linux, `open <path>` on macOS, `start <path>` on Windows) and tell them the absolute path.
 
-The report uses **Tailwind via CDN** for layout and styling, and **Mermaid via CDN** for diagrams where a graph/flow/sequence reliably communicates the structure. Mix Mermaid with hand-crafted CSS/SVG visuals: use Mermaid when relationships are graph-shaped (call graphs, dependencies, sequences), and hand-built divs/SVG when you want something more editorial (mass diagrams, cross-sections, collapse animations). Each candidate gets a **before/after visualisation**. Be visual.
+Copy [scaffold.html](scaffold.html) to that temp path and fill in the candidates. Keep its `<style>` block as-is. The report is self-contained: inline CSS, hand-built HTML/SVG diagrams, no `<script>` tags, nothing loaded from the network. A fetch that never arrives used to leave the page unstyled, and you would not see it because you do not render the file. Mix diagram shapes (boxes-and-arrows, inline SVG, cross-sections, mass diagrams, call-graph collapse) so every card does not look the same. Each candidate gets a **before/after visualisation**. Be visual.
 
 For each candidate, render a card with:
 
